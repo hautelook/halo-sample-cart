@@ -4,8 +4,8 @@ namespace Hautelook;
 
 class Product
 {
-    protected $name;
-    protected $price;
+    private $name;
+    private $price;
 
     public function __construct($name, $price)
     {

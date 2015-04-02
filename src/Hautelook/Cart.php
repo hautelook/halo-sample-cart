@@ -1,21 +1,20 @@
 <?php
+
 namespace Hautelook;
 
 class Cart
 {
-    protected $products;
-
-    public function __construct()
-    {
-        $this->products = [];
-    }
+    /**
+     * @var Product[]
+     */
+    private $products = [];
 
     public function addProduct(Product $product)
     {
         $this->products[] = $product;
     }
 
-    public function subtotal()
+    public function getSubtotal()
     {
         $subtotal = 0;
         foreach ($this->products as $product) {

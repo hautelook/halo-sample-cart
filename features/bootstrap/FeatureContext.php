@@ -1,35 +1,20 @@
 <?php
 
-use Behat\Behat\Context\ClosuredContextInterface,
-    Behat\Behat\Context\TranslatedContextInterface,
-    Behat\Behat\Context\BehatContext,
-    Behat\Behat\Exception\PendingException;
-use Behat\Gherkin\Node\PyStringNode,
-    Behat\Gherkin\Node\TableNode;
+use Behat\Behat\Context\Context;
+use Behat\Behat\Tester\Exception\PendingException;
 use PHPUnit_Framework_Assert as Assert;
 use Hautelook\Cart;
 use Hautelook\Product;
 
-/**
- * Features context.
- */
-class FeatureContext extends BehatContext
+class FeatureContext implements Context
 {
-
+    /**
+     * @var Cart
+     */
     private $cart;
 
     /**
-     * Initializes context.
-     * Every scenario gets it's own context object.
-     *
-     * @param array $parameters context parameters (set them up through behat.yml)
-     */
-    public function __construct(array $parameters)
-    {
-    }
-
-    /**
-     * @Given /^I have an empty cart$/
+     * @Given I have an empty cart
      */
     public function iHaveAnEmptyCart()
     {
@@ -37,68 +22,67 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @When /^I add a "([^"]*)" dollar item named "([^"]*)"$/
+     * @When I add a $:price item named :productName
      */
-    public function iAddADollarItemNamed($dollars, $product_name)
+    public function iAddAPriceItemNamed($price, $productName)
     {
-        $product = new Product($product_name, $dollars);
+        $product = new Product($productName, $price);
         $this->cart->addProduct($product);
     }
     
     /**
-     * @When /^I add a "([^"]*)" dollar "([^"]*)" lb item named "([^"]*)"$/
+     * @When I add a $:price :weight lb item named :productName
      */
-    public function iAddADollarItemWithWeight($dollars, $lb, $product_name)
+    public function iAddAPriceWeightItemNamed($price, $weight, $productName)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then My subtotal should be $:price
+     */
+    public function mySubtotalShouldBePrice($price)
+    {
+        Assert::assertEquals($price, $this->cart->getSubtotal());
+    }
+
+    /**
+     * @Then My total should be $:price
+     */
+    public function myTotalShouldBePrice($price)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then My quantity of products named :productName should be :quantity
+     */
+    public function myQuantityOfProductsNamedShouldBe($productName, $quantity)
     {
         throw new PendingException();
     }
     
 
     /**
-     * @Then /^My subtotal should be "([^"]*)" dollars$/
+     * @Given I have a cart with a $:price item named :productName
      */
-    public function mySubtotalShouldBeDollars($subtotal)
-    {
-        Assert::assertEquals($subtotal, $this->cart->subtotal());
-    }
-
-    /**
-     * @Then /^My total should be "([^"]*)" dollars$/
-     */
-    public function myTotalShouldBeDollars($total)
+    public function iHaveACartWithAPriceItemNamed($price, $productName)
     {
         throw new PendingException();
     }
 
     /**
-     * @Then /^My quantity of products named "([^"]*)" should be "([^"]*)"$/
+     * @When I apply a :discount% coupon code
      */
-    public function myQuantityOfProductsShouldBe($product_name, $quantity)
-    {
-        throw new PendingException();
-    }
-    
-
-    /**
-     * @Given /^I have a cart with a "([^"]*)" dollar item named "([^"]*)"$/
-     */
-    public function iHaveACartWithADollarItem($item_cost, $product_name)
+    public function iApplyADiscountPercentCouponCode($discount)
     {
         throw new PendingException();
     }
 
     /**
-     * @When /^I apply a "([^"]*)" percent coupon code$/
+     * @Then My cart should have :itemCount item(s)
      */
-    public function iApplyAPercentCouponCode($discount)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then /^My cart should have "([^"]*)" item\(s\)$/
-     */
-    public function myCartShouldHaveItems($item_count)
+    public function myCartShouldHaveItems($itemCount)
     {
         throw new PendingException();
     }
