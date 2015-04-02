@@ -9,23 +9,12 @@ use Behat\Gherkin\Node\PyStringNode,
 use PHPUnit_Framework_Assert as Assert;
 use Hautelook\Cart;
 
-/**
- * Features context.
- */
 class FeatureContext extends BehatContext
 {
-
-    private $cart;
-
     /**
-     * Initializes context.
-     * Every scenario gets it's own context object.
-     *
-     * @param array $parameters context parameters (set them up through behat.yml)
+     * @var Cart
      */
-    public function __construct(array $parameters)
-    {
-    }
+    private $cart;
 
     /**
      * @Given /^I have an empty cart$/
@@ -70,7 +59,7 @@ class FeatureContext extends BehatContext
     /**
      * @Then /^My quantity of products named "([^"]*)" should be "([^"]*)"$/
      */
-    public function myQuantityOfProductsShouldBe($product_name, $quantity)
+    public function myQuantityOfProductsShouldBe($productName, $quantity)
     {
         throw new PendingException();
     }
@@ -79,7 +68,7 @@ class FeatureContext extends BehatContext
     /**
      * @Given /^I have a cart with a "([^"]*)" dollar item named "([^"]*)"$/
      */
-    public function iHaveACartWithADollarItem($item_cost, $product_name)
+    public function iHaveACartWithADollarItem($itemCost, $productName)
     {
         throw new PendingException();
     }
@@ -95,7 +84,7 @@ class FeatureContext extends BehatContext
     /**
      * @Then /^My cart should have "([^"]*)" item\(s\)$/
      */
-    public function myCartShouldHaveItems($item_count)
+    public function myCartShouldHaveItems($itemCount)
     {
         throw new PendingException();
     }

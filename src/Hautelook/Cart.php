@@ -1,4 +1,5 @@
 <?php
+
 namespace Hautelook;
 
 class Cart
@@ -7,4 +8,4 @@ class Cart
     {
         return 0;
     }
-} 
+}
