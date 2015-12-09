@@ -25,6 +25,7 @@ class FeatureContext extends BehatContext
      */
     public function __construct(array $parameters)
     {
+        $this->cart = new Cart();
     }
 
     /**
@@ -32,7 +33,8 @@ class FeatureContext extends BehatContext
      */
     public function iHaveAnEmptyCart()
     {
-        $this->cart = new Cart();
+        $products = $this->cart->getCartContents();
+        Assert::assertCount(0, $products['items']);
     }
 
     /**
@@ -40,7 +42,7 @@ class FeatureContext extends BehatContext
      */
     public function mySubtotalShouldBeDollars($subtotal)
     {
-        Assert::assertEquals($subtotal, $this->cart->subtotal());
+        Assert::assertEquals($subtotal, $this->cart->getSubtotal());
     }
 
     /**
@@ -48,7 +50,7 @@ class FeatureContext extends BehatContext
      */
     public function iAddADollarItemNamed($dollars, $product_name)
     {
-        throw new PendingException();
+        $this->cart->addItem($dollars, $product_name);
     }
     
     /**
@@ -56,7 +58,7 @@ class FeatureContext extends BehatContext
      */
     public function iAddADollarItemWithWeight($dollars, $lb, $product_name)
     {
-        throw new PendingException();
+        $this->cart->addItem($dollars, $product_name, $lb);
     }
     
     /**
@@ -64,7 +66,7 @@ class FeatureContext extends BehatContext
      */
     public function myTotalShouldBeDollars($total)
     {
-        throw new PendingException();
+        Assert::assertEquals($total, $this->cart->getTotal());
     }
 
     /**
@@ -72,16 +74,31 @@ class FeatureContext extends BehatContext
      */
     public function myQuantityOfProductsShouldBe($product_name, $quantity)
     {
-        throw new PendingException();
+        $expected = [
+            'items' => [
+                $product_name => [
+                    'qty' => $quantity
+                ]
+            ]
+        ];
+
+        Assert::assertContains($expected, $this->cart->getCartContents());
     }
-    
 
     /**
      * @Given /^I have a cart with a "([^"]*)" dollar item named "([^"]*)"$/
      */
     public function iHaveACartWithADollarItem($item_cost, $product_name)
     {
-        throw new PendingException();
+        $expected = [
+            'items' => [
+                $product_name => [
+                    'price' => $item_cost
+                ]
+            ]
+        ];
+
+        Assert::assertContains($expected, $this->cart->getCartContents());
     }
 
     /**
@@ -89,7 +106,7 @@ class FeatureContext extends BehatContext
      */
     public function iApplyAPercentCouponCode($discount)
     {
-        throw new PendingException();
+        $this->cart->applyCoupon($discount, [], true);
     }
 
     /**
@@ -97,6 +114,7 @@ class FeatureContext extends BehatContext
      */
     public function myCartShouldHaveItems($item_count)
     {
-        throw new PendingException();
+        $cartContents = $this->cart->getCartContents();
+        Assert::assertEquals($item_count, count($cartContents['items']));
     }
 }
