@@ -1,34 +1,19 @@
 <?php
 
-use Behat\Behat\Context\ClosuredContextInterface,
-    Behat\Behat\Context\TranslatedContextInterface,
-    Behat\Behat\Context\BehatContext,
-    Behat\Behat\Exception\PendingException;
-use Behat\Gherkin\Node\PyStringNode,
-    Behat\Gherkin\Node\TableNode;
+use Behat\Behat\Context\Context;
+use Behat\Behat\Tester\Exception\PendingException;
 use PHPUnit_Framework_Assert as Assert;
 use Hautelook\Cart;
 
-/**
- * Features context.
- */
-class FeatureContext extends BehatContext
+class FeatureContext implements Context
 {
-
+    /**
+     * @var Cart
+     */
     private $cart;
 
     /**
-     * Initializes context.
-     * Every scenario gets it's own context object.
-     *
-     * @param array $parameters context parameters (set them up through behat.yml)
-     */
-    public function __construct(array $parameters)
-    {
-    }
-
-    /**
-     * @Given /^I have an empty cart$/
+     * @Given I have an empty cart
      */
     public function iHaveAnEmptyCart()
     {
@@ -36,31 +21,31 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Then /^My subtotal should be "([^"]*)" dollars$/
+     * @When I add a $:price dollar item named :productName
      */
-    public function mySubtotalShouldBeDollars($subtotal)
+    public function iAddADollarItemNamed($price, $productName)
     {
-        Assert::assertEquals($subtotal, $this->cart->subtotal());
+        throw new PendingException();
     }
 
     /**
-     * @When /^I add a "([^"]*)" dollar item named "([^"]*)"$/
+     * @When I add a $:price dollar :weight lb item named :productName
      */
-    public function iAddADollarItemNamed($dollars, $product_name)
-    {
-        throw new PendingException();
-    }
-    
+     public function iAddADollarItemWithWeight($price, $weight, $productName)
+     {
+         throw new PendingException();
+     }
+
+     /**
+      * @Then My subtotal should be $:subtotal dollars
+      */
+     public function mySubtotalShouldBeDollars($subtotal)
+     {
+         Assert::assertEquals($subtotal, $this->cart->subtotal());
+     }
+
     /**
-     * @When /^I add a "([^"]*)" dollar "([^"]*)" lb item named "([^"]*)"$/
-     */
-    public function iAddADollarItemWithWeight($dollars, $lb, $product_name)
-    {
-        throw new PendingException();
-    }
-    
-    /**
-     * @Then /^My total should be "([^"]*)" dollars$/
+     * @Then My total should be $:total dollars
      */
     public function myTotalShouldBeDollars($total)
     {
@@ -68,34 +53,33 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Then /^My quantity of products named "([^"]*)" should be "([^"]*)"$/
+     * @Then My quantity of products named :productName should be :quantity
      */
-    public function myQuantityOfProductsShouldBe($product_name, $quantity)
-    {
-        throw new PendingException();
-    }
-    
-
-    /**
-     * @Given /^I have a cart with a "([^"]*)" dollar item named "([^"]*)"$/
-     */
-    public function iHaveACartWithADollarItem($item_cost, $product_name)
+    public function myQuantityOfProductsNamedShouldBe($productName, $quantity)
     {
         throw new PendingException();
     }
 
     /**
-     * @When /^I apply a "([^"]*)" percent coupon code$/
+     * @Given I have a cart with a $:price dollar item named :productName
      */
-    public function iApplyAPercentCouponCode($discount)
+    public function iHaveACartWithADollarItemNamed($price, $productName)
     {
         throw new PendingException();
     }
 
     /**
-     * @Then /^My cart should have "([^"]*)" item\(s\)$/
+     * @When I apply a :percent % percent coupon code
      */
-    public function myCartShouldHaveItems($item_count)
+    public function iApplyAPercentCouponCode($percent)
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then My cart should have :itemCount item(s)
+     */
+    public function myCartShouldHaveItems($itemCount)
     {
         throw new PendingException();
     }
