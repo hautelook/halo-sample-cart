@@ -21,7 +21,7 @@ class FeatureContext implements Context
     }
 
     /**
-     * @When I add a $:price item named :productName
+     * @When I add a $:price dollar item named :productName
      */
     public function iAddADollarItemNamed($price, $productName)
     {
@@ -29,9 +29,9 @@ class FeatureContext implements Context
     }
 
     /**
-     * @When I add a $:price :weight lb item named :productName
+     * @When I add a $:price dollar :weight lb item named :productName
      */
-     public function iAddADollarItemWithWeight($dollars, $lb, $product_name)
+     public function iAddADollarItemWithWeight($price, $weight, $productName)
      {
          throw new PendingException();
      }
@@ -60,17 +60,16 @@ class FeatureContext implements Context
         throw new PendingException();
     }
 
-
     /**
-     * @Given I have a cart with a $:price item named :productName
+     * @Given I have a cart with a $:price dollar item named :productName
      */
-    public function iHaveACartWithAPriceItemNamed($price, $productName)
+    public function iHaveACartWithADollarItemNamed($price, $productName)
     {
         throw new PendingException();
     }
 
     /**
-     * @When I apply a :percent% coupon code
+     * @When I apply a :percent % percent coupon code
      */
     public function iApplyAPercentCouponCode($percent)
     {
