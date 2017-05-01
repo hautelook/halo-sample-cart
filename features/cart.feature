@@ -16,10 +16,10 @@ Scenario: Add an item that already exists in the cart
   
 Scenario: Add an item twice should show quantity of 2
   Given I have an empty cart
-  And I add a "100" dollar item named "jewerly"
+  And I add a "100" dollar item named "jewelry"
   And I add a "5" dollar item named "belt"
-  And I add a "100" dollar item named "jewerly"
-  Then My quantity of products named "jewerly" should be "2"
+  And I add a "100" dollar item named "jewelry"
+  Then My quantity of products named "jewelry" should be "2"
 
 Scenario: Add a 10 dollar item to a cart with a 5 dollar item
   Given I have a cart with a "5" dollar item named "tee"
