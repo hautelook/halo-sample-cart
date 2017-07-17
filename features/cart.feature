@@ -8,18 +8,18 @@ Scenario: Add a 10 dollar item to an empty cart
   Given I have an empty cart
   When I add a "10" dollar item named "shirt"
   Then My subtotal should be "10" dollars
-  
+
 Scenario: Add an item that already exists in the cart
   Given I have a cart with a "5" dollar item named "tee"
   When I add a "5" dollar item named "tee"
   Then My quantity of products named "tee" should be "2"
-  
+
 Scenario: Add an item twice should show quantity of 2
   Given I have an empty cart
-  And I add a "100" dollar item named "jewerly"
+  And I add a "100" dollar item named "jewelry"
   And I add a "5" dollar item named "belt"
-  And I add a "100" dollar item named "jewerly"
-  Then My quantity of products named "jewerly" should be "2"
+  And I add a "100" dollar item named "jewelry"
+  Then My quantity of products named "jewelry" should be "2"
 
 Scenario: Add a 10 dollar item to a cart with a 5 dollar item
   Given I have a cart with a "5" dollar item named "tee"
@@ -45,13 +45,13 @@ Scenario: When order is under $100, and all items under 10 lb, then shipping is 
   And I add a "20" dollar "1" lb item named "skirt"
   Then My subtotal should be "98" dollars
   And My total should be "103" dollars
-  
+
 Scenario: When order is under $100, and all items are 10 lb or more, then flat rate should not be charged
   Given I have an empty cart
   When I add a "49" dollar "50" lb item named "dresser"
   When I add a "49" dollar "10" lb item named "indoor rug"
-  Then My total should be "138" dollars 
-  
+  Then My total should be "138" dollars
+
 Scenario: When order is $100 or more, and each individual item is under 10 lb, then shipping is free
   Given I have an empty cart
   When I add a "68" dollar "2" lb item named "dress"
