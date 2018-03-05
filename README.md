@@ -49,7 +49,7 @@ You may need to add additional files or classes to complete the assignment. Vagr
 
 ## Challenge
 
-The first scenario has been written for you. Please implement the remaining scenarios in `features/cart.feature'. We are judging you on the design and the correctness of the code. Make whatever changes you want to the scenario implementations and source code to accomplish that goal. We are excited to see it! Zip up the directory and email it back to us. You can omit the `.git` and `vendor` directories when creating the zip.
+The first scenario has been written for you. Please implement the remaining scenarios in `features/cart.feature`. We are judging you on the design and the correctness of the code. Make whatever changes you want to the scenario implementations and source code to accomplish that goal. We are excited to see it! Zip up the directory and email it back to us. You can omit the `.git` and `vendor` directories when creating the zip.
 
 ### Support
 
