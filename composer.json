@@ -5,7 +5,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Hautelook": "src/"
+            "Hautelook": "/src/src"
         }
     },
     "minimum-stability": "dev",

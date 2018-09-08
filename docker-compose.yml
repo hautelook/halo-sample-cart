@@ -1,0 +1,13 @@
+version: "2"
+
+services:
+  # Behat
+  behat:
+    hostname: behat
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    image: halo-sample-cart
+    volumes:
+      - .:/src
+    tty: true

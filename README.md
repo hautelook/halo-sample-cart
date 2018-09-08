@@ -1,39 +1,29 @@
 # E-commerce Cart Sample
 
-The cart sample includes a Vagrantfile, behat tests and plain old PHP objects (POPOs) that model the functionality of a basic shopping cart.
+The cart sample includes a Dockerfile, docker-compose, behat tests and plain old PHP objects (POPOs) that model the 
+functionality of a basic shopping cart.
 
 [![Build Status](https://travis-ci.org/hautelook/halo-sample-cart.svg)](https://travis-ci.org/hautelook/halo-sample-cart)
 
 ## Requirements
 
-The cart sample uses Vagrant to provision and configure a Virtual Machine that satisfies all the dependencies for the code to work.
+The cart sample uses a docker image that satisfies all the dependencies for the behat tests to work.
 
-   * VirtualBox `5.0.x`. Download here: https://www.virtualbox.org/wiki/Downloads
-   * Vagrant `1.8.x`. Download here: https://www.vagrantup.com/downloads.html
+   * Docker stable CE release. Download here: https://docs.docker.com/install/
 
 ## Installation
 
-   * Make sure you have a working internet connection. The virtual machine will be downloading packages from the internet in order to configure itself.
-   * Download and install Virtualbox.
-   * Download and install Vagrant.
-   * Start the Vagrant box (VM) by typing: `vagrant up`
-   * During the startup process, the virtual machine will be provisioned with git, php and composer.
+   * Make sure you have a working internet connection.
+   * Download and install Docker.
+   * Build the docker container: `docker-compose build`
 
-Note: We expect installation to take 15-30 minutes to setup. If for any reason it is taking longer, please feel free to reach out to us. We are happy to [help](#support).
-
-### Windows Users
-
-If you are using a Windows machine, you may encounter some problems getting Vagrant working. Please read [Getting Started with Vagrant on Windows](http://www.sitepoint.com/getting-started-vagrant-windows/) for some Windows specific instructions.
+Note: We expect installation to take 5-20 minutes to setup. If for any reason it is taking longer, please feel free to 
+reach out to us. We are happy to [help](#support).
 
 ## Running Tests
 
-After installation, ssh into the vagrant box and confirm the tests are working:
-
-```bash
-$ vagrant ssh
-$ cd /vagrant
-$ behat
-```
+After installation confirm that tests are working
+   * Run tests: `docker-compose up`
 
 The tests should complete without errors. The majority of the tests will be in a pending state.
 
